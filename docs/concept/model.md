@@ -18,7 +18,8 @@ A **gene** is a minimal change behind a flag. Its contract:
 - it depends on other genes **only through nesting** (see below), never sideways;
 - it can be **removed mechanically** (a skill can delete it without a human reading the code).
 
-Variants of one gene are **alleles**; only alleles of the same gene split traffic between themselves.
+Variants of one gene are **alleles**. Genes and alleles never split traffic themselves: **traffic is split only between species**.
+A gene is measured across all the species that carry it.
 
 ## Nested genes
 

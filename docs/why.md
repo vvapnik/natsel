@@ -20,7 +20,7 @@ natsel is not for everyone. This page helps you decide if it is for you.
 | Problem today | With natsel |
 |---|---|
 | Cheap ideas wait in line for expensive experiments | Every idea becomes a gene and enters the pool right away |
-| Each test needs its own share of traffic | Independent genes share traffic factorially; only alleles of one gene split it |
+| Each test needs its own share of traffic | Traffic is split only between a few species; each species carries many genes, and each gene is measured across all species that carry it |
 | A fixed control ages and drifts | No control: each child is compared to its living parent |
 | Dead flags pile up | Extinction deletes the code; fixation merges it and removes the flag |
 | A human decides each experiment | Traffic weights decide; humans set goals, guardrails and approve PRs |

@@ -4,7 +4,7 @@
 |---|---|---|---|
 | What competes | Variants of one experiment | Arms of one decision | Genes across the product, carried by species |
 | Baseline | Fixed control | Usually none | None; genealogical control (child vs living parent) |
-| Traffic | Split per experiment | Shifted toward winners | Factorial across genes; only alleles split |
+| Traffic | Split per experiment | Shifted toward winners | Split only between species; genes are scored across the species that carry them |
 | Interactions | Usually assumed rare | Ignored | Measured within a locus; nested genes scored only where their parent is on |
 | Where changes come from | People | People | People and LLM skills, by a gene contract |
 | End of life | Manual flag cleanup | Manual | Built in: extinction deletes code, fixation removes the flag |
