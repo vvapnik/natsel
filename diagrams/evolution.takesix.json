@@ -1,47 +1,106 @@
 {
   "takesix": "1.0",
   "title": "How species evolve",
-  "description": "A phylogenetic tree of one product: time runs left to right, 🌿 alive, ☠ extinct",
+  "description": "A construction company landing page: species (combinations of genes) evolve left to right, 🌿 alive, ☠ extinct",
   "blocks": [
     {
       "id": "s3",
       "at": "F1",
       "icon": "☠",
-      "title": "S3",
-      "description": "+checkout",
-      "details": "**Genotype:** onboarding B + checkout copy gene.\n\n**Fate:** lethal mutation. The checkout copy broke a guardrail metric (payment errors). The fast guardrail path killed S3 within minutes and its users went back to the closest living relative, S1.\n\nThe checkout gene's score drops; a skill opens a PR that deletes its code."
+      "title": "Species S3",
+      "description": "Lethal: hero video broke page speed, died in minutes",
+      "children": [
+        {
+          "id": "s3-calc",
+          "at": "B2:C2",
+          "icon": "🧬",
+          "title": "Gene: Cost calculator",
+          "description": "Inherited from S1",
+          "details": "Locus: **hero section**. Visitors enter house area and type, and get an estimate before calling.\n\nAlleles:\n- **A**: one form with sliders\n- **B**: a three-step quiz (type → area → finish)\n\nFitness: consultation requests per visitor."
+        },
+        {
+          "id": "s3-video",
+          "at": "E2:F2",
+          "icon": "☠",
+          "title": "Gene: Hero video",
+          "description": "Lethal: page speed guardrail",
+          "details": "Locus: **hero section**. Autoplay drone footage of a finished house instead of a static photo.\n\nBroke the **page speed guardrail** (LCP over 4 s on mobile). The fast guardrail path killed the species within minutes; a skill opened a PR deleting the video code."
+        }
+      ]
     },
     {
       "id": "s1",
       "at": "D2",
       "icon": "🌿",
-      "title": "S1",
-      "description": "+onboard",
-      "details": "**Genotype:** onboarding gene, allele B.\n\n**Fate:** alive, 25% of traffic. A successful parent: it produced S3 by mutation and S4 by crossing. It lives side by side with its children, so they are compared with it (genealogical control)."
+      "title": "Species S1",
+      "description": "Alive, 25% of traffic. Parent of S3 and S4",
+      "children": [
+        {
+          "id": "s1-calc",
+          "at": "B2:C2",
+          "icon": "🧬",
+          "title": "Gene: Cost calculator",
+          "description": "Allele B: three-step quiz",
+          "details": "Locus: **hero section**. Visitors enter house area and type, and get an estimate before calling.\n\nAlleles:\n- **A**: one form with sliders\n- **B**: a three-step quiz (type → area → finish)\n\nFitness: consultation requests per visitor."
+        }
+      ]
     },
     {
       "id": "s0",
       "at": "A3:B3",
       "icon": "☠",
-      "title": "S0",
-      "description": "founder",
-      "details": "**Genotype:** no genes, the product as it is today.\n\n**Fate:** extinct. Once its children S1 and S2 proved themselves, traffic flowed to them and S0 stopped getting new users. Nobody had to decide to switch it off.\n\nThere is no control version: S0 was never special, only the first."
+      "title": "Species S0",
+      "description": "Founder, no genes · extinct"
     },
     {
       "id": "s2",
       "at": "D5",
       "icon": "☠",
-      "title": "S2",
-      "description": "+pricing",
-      "details": "**Genotype:** pricing page gene, allele A.\n\n**Fate:** extinct. Its weight decayed and it lost its slot. But its genes did not have to die with it: the pricing gene passed to S4 by crossing.\n\nThe unit of selection is the **gene**, not the species. Species are temporary carriers."
+      "title": "Species S2",
+      "description": "Extinct, but its gene lives on in S4",
+      "children": [
+        {
+          "id": "s2-gal",
+          "at": "B2:C2",
+          "icon": "🧬",
+          "title": "Gene: Before/after gallery",
+          "description": "Allele B: drag slider",
+          "details": "Locus: **portfolio section**. Finished projects as before/after photos instead of a plain photo grid.\n\nAlleles:\n- **A**: grid of pairs\n- **B**: drag slider over one photo"
+        }
+      ]
     },
     {
       "id": "s4",
       "at": "F5",
       "icon": "🌿",
-      "title": "S4",
-      "description": "leader",
-      "details": "**Genotype:** onboarding B + pricing page A.\n\n**Fate:** alive, 73% of traffic and growing. Both genes keep winning across every species that carries them, so the regression gives them high fitness.\n\nNext: the onboarding gene is **fixed** — merged into the base, its flag removed. From then on it is simply part of the product, and the slot is free for new mutations."
+      "title": "Species S4",
+      "description": "Leader, 73%. Hybrid S1 × S2",
+      "children": [
+        {
+          "id": "s4-calc",
+          "at": "B2:C2",
+          "icon": "🧬",
+          "title": "Gene: Cost calculator",
+          "description": "From S1 · about to be fixed",
+          "details": "Locus: **hero section**. Visitors enter house area and type, and get an estimate before calling.\n\nAlleles:\n- **A**: one form with sliders\n- **B**: a three-step quiz (type → area → finish)\n\nFitness: consultation requests per visitor.\n\nNext: **fixation**. The calculator keeps winning in every species that carries it, so it is merged into the base and its flag removed."
+        },
+        {
+          "id": "s4-range",
+          "at": "B4:C4",
+          "icon": "🧬",
+          "title": "Gene: Price as range",
+          "description": "Nested inside the calculator",
+          "details": "A **nested gene**: it lives inside the calculator gene and is expressed only when the calculator is on (epistasis).\n\nAlleles:\n- **A**: exact price\n- **B**: a range, \"from €180k to €210k\"\n\nIt is scored only on visitors who see the calculator. If the calculator went extinct, this gene would go with it."
+        },
+        {
+          "id": "s4-gal",
+          "at": "E2:F2",
+          "icon": "🧬",
+          "title": "Gene: Before/after gallery",
+          "description": "From S2",
+          "details": "Locus: **portfolio section**. Finished projects as before/after photos instead of a plain photo grid.\n\nAlleles:\n- **A**: grid of pairs\n- **B**: drag slider over one photo"
+        }
+      ]
     }
   ],
   "links": [
@@ -70,6 +129,11 @@
       "to": "s4",
       "label": "cross",
       "style": "dashed"
+    },
+    {
+      "from": "s4-calc",
+      "to": "s4-range",
+      "label": "contains"
     }
   ]
 }
