@@ -4,40 +4,40 @@
   "description": "A phylogenetic tree of one product: time runs left to right, 🌿 alive, ☠ extinct",
   "blocks": [
     {
-      "id": "s0",
-      "at": "A3",
-      "icon": "☠",
-      "title": "S0",
-      "description": "founder",
-      "details": "**Genotype:** no genes, the product as it is today.\n\n**Fate:** extinct. Once its children S1 and S2 proved themselves, traffic flowed to them and S0 stopped getting new users. Nobody had to decide to switch it off.\n\nThere is no control version: S0 was never special, only the first."
-    },
-    {
-      "id": "s1",
-      "at": "C2",
-      "icon": "🌿",
-      "title": "S1",
-      "description": "+onboard",
-      "details": "**Genotype:** onboarding gene, allele B.\n\n**Fate:** alive, 25% of traffic. A successful parent: it produced S3 by mutation and S4 by crossing. It lives side by side with its children, so they are compared with it (genealogical control)."
-    },
-    {
-      "id": "s2",
-      "at": "C4",
-      "icon": "☠",
-      "title": "S2",
-      "description": "+pricing",
-      "details": "**Genotype:** pricing page gene, allele A.\n\n**Fate:** extinct. Its weight decayed and it lost its slot. But its genes did not have to die with it: the pricing gene passed to S4 by crossing.\n\nThe unit of selection is the **gene**, not the species. Species are temporary carriers."
-    },
-    {
       "id": "s3",
-      "at": "E1",
+      "at": "F1",
       "icon": "☠",
       "title": "S3",
       "description": "+checkout",
       "details": "**Genotype:** onboarding B + checkout copy gene.\n\n**Fate:** lethal mutation. The checkout copy broke a guardrail metric (payment errors). The fast guardrail path killed S3 within minutes and its users went back to the closest living relative, S1.\n\nThe checkout gene's score drops; a skill opens a PR that deletes its code."
     },
     {
+      "id": "s1",
+      "at": "D2",
+      "icon": "🌿",
+      "title": "S1",
+      "description": "+onboard",
+      "details": "**Genotype:** onboarding gene, allele B.\n\n**Fate:** alive, 25% of traffic. A successful parent: it produced S3 by mutation and S4 by crossing. It lives side by side with its children, so they are compared with it (genealogical control)."
+    },
+    {
+      "id": "s0",
+      "at": "A3:B3",
+      "icon": "☠",
+      "title": "S0",
+      "description": "founder",
+      "details": "**Genotype:** no genes, the product as it is today.\n\n**Fate:** extinct. Once its children S1 and S2 proved themselves, traffic flowed to them and S0 stopped getting new users. Nobody had to decide to switch it off.\n\nThere is no control version: S0 was never special, only the first."
+    },
+    {
+      "id": "s2",
+      "at": "D5",
+      "icon": "☠",
+      "title": "S2",
+      "description": "+pricing",
+      "details": "**Genotype:** pricing page gene, allele A.\n\n**Fate:** extinct. Its weight decayed and it lost its slot. But its genes did not have to die with it: the pricing gene passed to S4 by crossing.\n\nThe unit of selection is the **gene**, not the species. Species are temporary carriers."
+    },
+    {
       "id": "s4",
-      "at": "E3",
+      "at": "F5",
       "icon": "🌿",
       "title": "S4",
       "description": "leader",
