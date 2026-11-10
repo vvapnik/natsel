@@ -3,15 +3,56 @@
   "title": "natsel team workflow",
   "description": "From an idea in the tracker to deleted or merged code",
   "blocks": [
-    { "id": "idea", "at": "A1:B1", "icon": "○", "title": "Idea", "description": "A product person files it in the tracker" },
-    { "id": "build", "at": "B2:C2", "icon": "○", "title": "Implement with skills", "description": "Skills make the gene and its alleles" },
-    { "id": "checks", "at": "C3:D3", "icon": "○", "title": "Usual checks", "description": "Tests, review, acceptance, stage",
-      "details": "Nothing changes in your quality process. One known gap: **combinations** of genes are not tested on stage. It is covered by isolation within a locus and the fast guardrail path." },
-    { "id": "pool", "at": "D4:E4", "icon": "○", "title": "Gene pool", "description": "Control Plane builds species, sets weights",
-      "details": "Optional manual control comes as **constraints**: max share, ramp-up, segments, forbidden combinations. Not weight edits, so the statistics stay valid." },
-    { "id": "select", "at": "E5:F5", "icon": "○", "title": "Selection on traffic", "description": "Each idea's impact is visible, goes to the ticket" },
-    { "id": "end", "at": "A6:C6", "icon": "○", "title": "Delete or fix", "description": "A PR from a skill; a human approves",
-      "details": "- **Extinction**: a losing gene's code is deleted.\n- **Fixation**: a winning gene is merged into the base and its flag removed.\n\nNew genes come only from people's ideas; the system combines them." }
+    {
+      "id": "idea",
+      "at": "A1:B1",
+      "icon": "○",
+      "title": "Idea",
+      "description": "A product person files it in the tracker"
+    },
+    {
+      "id": "build",
+      "at": "B2:C2",
+      "icon": "○",
+      "title": "Implement with skills",
+      "description": "Skills make the gene and its alleles"
+    },
+    {
+      "id": "checks",
+      "at": "C3:D3",
+      "icon": "○",
+      "title": "Usual checks",
+      "description": "Tests, review, acceptance, stage",
+      "details": "Nothing changes in your quality process. One known gap: **combinations** of genes are not tested on stage. It is covered by binding genes to one locus (dependencies only through nesting) and the fast guardrail path."
+    },
+    {
+      "id": "pool",
+      "at": "D4:E4",
+      "icon": "○",
+      "title": "Gene pool",
+      "description": "Control Plane builds species, sets weights",
+      "details": "Optional manual control comes as **constraints**: max share, ramp-up, segments, forbidden combinations. Not weight edits, so the statistics stay valid."
+    },
+    {
+      "id": "select",
+      "at": "E5:F5",
+      "icon": "○",
+      "title": "Selection on traffic",
+      "description": "Each idea's impact is visible, goes to the ticket"
+    },
+    {
+      "id": "end",
+      "at": "A6:C6",
+      "icon": "○",
+      "title": "Delete or fix",
+      "description": "A PR from a skill; a human approves",
+      "details": "- **Extinction**: a losing gene's code is deleted.\n- **Fixation**: a winning gene is merged into the base and its flag removed.\n\nNew genes come only from people's ideas; the system combines them."
+    }
   ],
-  "links": [ { "from": "select", "to": "end" } ]
+  "links": [
+    {
+      "from": "select",
+      "to": "end"
+    }
+  ]
 }

@@ -33,7 +33,8 @@ against a control, each ending in a meeting. natsel is built for a stream of che
 <div class="ns-card" markdown>
 ### :material-dna: Genes
 A gene is one small change behind a flag, bound to one locus (a screen, a component,
-a funnel step). It is isolated and can be removed mechanically. Variants are alleles.
+a funnel step). It can be removed mechanically. Variants are alleles. Genes can nest:
+a "favorites" banner gene may carry genes of the favorites view inside it.
 </div>
 
 <div class="ns-card" markdown>

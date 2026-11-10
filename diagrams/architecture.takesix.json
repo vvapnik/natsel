@@ -16,7 +16,7 @@
           "icon": "⚙",
           "title": "natsel skills",
           "description": "Create genes by contract, delete or fix them",
-          "details": "LLM skills act as codemods that follow the **gene contract**: one locus, no dependency on other genes, mechanical removal.\n\n- **create** a gene with several alleles\n- **delete** a losing gene (a PR)\n- **fix** a winning gene: merge into the base and remove the flag (a PR)\n\nA human approves every PR."
+          "details": "LLM skills act as codemods that follow the **gene contract**: one locus, dependencies only through nesting (a gene inside another gene), mechanical removal.\n\n- **create** a gene with several alleles\n- **delete** a losing gene (a PR)\n- **fix** a winning gene: merge into the base and remove the flag (a PR)\n\nA human approves every PR."
         },
         {
           "id": "ci-register",
@@ -24,7 +24,7 @@
           "icon": "⬡",
           "title": "Build-time registration",
           "description": "SDK sends the gene list to the Control Plane",
-          "details": "At build time the SDK collects the list of genes and sends it to the Control Plane. **Code is the source of truth**: a gene exists only if it is in the code."
+          "details": "At build time the SDK collects the list of genes and sends it to the Control Plane. **Code is the source of truth**: a gene exists only if it is in the code. Each nested gene is sent with its parent."
         }
       ]
     },
@@ -41,14 +41,15 @@
           "icon": "◫",
           "title": "Gene registry",
           "description": "Assigns each gene a position in dna",
-          "details": "Positions of extinct genes are not reused while old cookies live; a new epoch starts with a new `dna` version."
+          "details": "Positions of extinct genes are not reused while old cookies live; a new epoch starts with a new `dna` version.\n\nThe registry also keeps the **nesting tree**: which gene lives inside which."
         },
         {
           "id": "cp-species",
           "at": "A3:B3",
           "icon": "⬡",
           "title": "Species builder",
-          "description": "Assembles species from suitable genes"
+          "description": "Assembles species from suitable genes",
+          "details": "Composes only valid genotypes: a nested gene is switched on only together with its parent. Genotypes that differ only in genes hidden by an off parent count as one species."
         },
         {
           "id": "cp-weights",
@@ -64,7 +65,7 @@
           "icon": "⬡",
           "title": "Gene statistics",
           "description": "Regression of gene contributions",
-          "details": "Fitness is scored **per gene**, by regression over species genotypes. Interactions are modelled only within a locus. Low score → extinction, consistent win → fixation."
+          "details": "Fitness is scored **per gene**, by regression over species genotypes. Interactions are modelled within a locus. A nested gene is scored only on users whose parent gene is on. Low score → extinction, consistent win → fixation."
         },
         {
           "id": "cp-ui",

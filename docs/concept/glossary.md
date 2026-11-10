@@ -4,6 +4,7 @@
 |---|---|
 | gene / allele | flag / variant |
 | locus | screen, component, funnel step |
+| epistasis | a nested gene: expressed only when its parent gene is on |
 | species | combination of genes assigned to a user |
 | fitness | target metric + guardrail metrics |
 | mutation | a PR from an LLM following the gene contract |

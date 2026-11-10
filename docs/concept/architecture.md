@@ -8,13 +8,13 @@
 
 Genes are created in code by skills (a codemod following the gene contract). At build time
 in CI/CD the SDK collects the list of genes and sends it to the Control Plane: **code is the
-source of truth**. At runtime the SDK makes no requests: it enables genes algorithmically from
+source of truth**. Along with each gene the SDK sends its parent gene, if it is nested. At runtime the SDK makes no requests: it enables genes algorithmically from
 `dna`. Ideally it is an OpenFeature provider.
 
 ## 2. Control Plane
 
-For the prototype, one service built from widgets: gene registry (assigns positions in `dna`),
-species composition, species weights, statistics (regression of gene contributions) and a UI
+For the prototype, one service built from widgets: gene registry (assigns positions in `dna`, keeps the nesting tree),
+species composition (only valid genotypes: a nested gene only with its parent), species weights, statistics (regression of gene contributions) and a UI
 (genealogy, kill switch, fitness function, constraints).
 
 ## 3. Breeder at the edge
@@ -40,4 +40,5 @@ A fixed-layout record: `version | gene field 1 | gene field 2 | …`
 - Rollout: code with the gene ships first (off by default), then the gene enters species.
   The SDK ignores unknown bits, a gene without a bit runs its default — build rollback is safe.
 - `dna` is signed (HMAC); a bad signature means reassignment.
+- A nested gene has its parent recorded in the registry; its field is read only when the parent's field is on.
 - Size: hundreds of genes fit in tens of bytes of base64.

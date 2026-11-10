@@ -19,5 +19,5 @@ natsel plugs into the process a product team already has.
 New genes come from people's initiative; the system only combines them.
 
 !!! warning "Known gap"
-    Combinations of genes are not tested on stage. This is covered by isolation within a
-    locus and a fast guardrail path.
+    Combinations of genes are not tested on stage. This is covered by keeping genes
+    bound to one locus (dependencies only through nesting) and a fast guardrail path.
