@@ -2,6 +2,10 @@
 
 natsel plugs into the process a product team already has.
 
+<iframe class="ns-diagram" src="../../assets/diagrams/workflow.html" title="natsel team workflow diagram" loading="lazy"></iframe>
+
+[Open full screen](../assets/diagrams/workflow.html){ .md-button } — click a block to look inside.
+
 1. A product person files an idea in the tracker (e.g. Jira).
 2. An engineer implements it with natsel skills; the skills produce several alleles at once.
 3. Autotests, code review, acceptance testing and stage — as usual.

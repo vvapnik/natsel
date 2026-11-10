@@ -14,6 +14,7 @@ winning genes get merged and their flag removed.
 | Path | What |
 |---|---|
 | `docs/` | Landing page, concept and guides. Published to GitHub Pages on every push to `main`. |
+| `diagrams/` | TakeSix sources of the site diagrams; rendered HTML goes to `docs/assets/diagrams/`. |
 | `mkdocs.yml` | Site config (MkDocs Material). |
 | `.github/workflows/pages.yml` | Builds the site with `mkdocs build --strict` and deploys it. |
 

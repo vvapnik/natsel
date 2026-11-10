@@ -70,15 +70,9 @@ by a PR from a skill. A human approves both.
 
 ## Architecture of the prototype
 
-```mermaid
-flowchart LR
-  CI["CI/CD<br>SDK registers genes"] --> CP["Control Plane<br>registry · species · weights · stats"]
-  CP -- weights --> BR["Breeder at the edge<br>assigns species, sets dna cookie"]
-  BR --> CDN["CDN<br>dna in cache key"]
-  CDN --> APP["App + SDK<br>enables genes by dna"]
-  APP -- exposures & outcomes --> EV["Event pipeline<br>fast guardrail path"]
-  EV --> CP
-```
+<iframe class="ns-diagram" src="assets/diagrams/architecture.html" title="natsel architecture diagram" loading="lazy"></iframe>
+
+[Open full screen](assets/diagrams/architecture.html){ .md-button } — click a block to look inside.
 
 [Architecture in detail →](concept/architecture.md)
 

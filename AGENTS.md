@@ -8,3 +8,4 @@ Notes for AI coding agents working in this repository.
 - Keep the vocabulary consistent with `docs/concept/glossary.md` (gene, allele, locus,
   species, Breeder, `dna`, fixation, extinction).
 - Language of the public repo: English.
+- Diagrams are TakeSix: edit `diagrams/*.takesix.json`, then render to `docs/assets/diagrams/<name>.html` with the takesix CLI (`takesix.mjs render`). No Mermaid.

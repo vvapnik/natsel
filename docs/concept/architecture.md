@@ -1,14 +1,8 @@
 # Architecture of the prototype
 
-```mermaid
-flowchart LR
-  CI["CI/CD<br>SDK registers genes"] --> CP["Control Plane"]
-  CP -- weights --> BR["Breeder at the edge"]
-  BR --> CDN["CDN"]
-  CDN --> APP["App + SDK"]
-  APP -- exposures & outcomes --> EV["Event pipeline"]
-  EV --> CP
-```
+<iframe class="ns-diagram" src="../../assets/diagrams/architecture.html" title="natsel architecture diagram" loading="lazy"></iframe>
+
+[Open full screen](../assets/diagrams/architecture.html){ .md-button } — click a block to look inside.
 
 ## 1. SDK and skills
 

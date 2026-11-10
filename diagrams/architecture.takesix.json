@@ -1,0 +1,143 @@
+{
+  "takesix": "1.0",
+  "title": "natsel architecture",
+  "description": "From genes in code to species at the edge and back through events",
+  "blocks": [
+    {
+      "id": "ci",
+      "at": "A1:B1",
+      "icon": "⚙",
+      "title": "Skills and CI/CD",
+      "description": "Genes live in code; SDK registers them",
+      "children": [
+        {
+          "id": "ci-skills",
+          "at": "A2:B2",
+          "icon": "⚙",
+          "title": "natsel skills",
+          "description": "Create genes by contract, delete or fix them",
+          "details": "LLM skills act as codemods that follow the **gene contract**: one locus, no dependency on other genes, mechanical removal.\n\n- **create** a gene with several alleles\n- **delete** a losing gene (a PR)\n- **fix** a winning gene: merge into the base and remove the flag (a PR)\n\nA human approves every PR."
+        },
+        {
+          "id": "ci-register",
+          "at": "E2:F2",
+          "icon": "⬡",
+          "title": "Build-time registration",
+          "description": "SDK sends the gene list to the Control Plane",
+          "details": "At build time the SDK collects the list of genes and sends it to the Control Plane. **Code is the source of truth**: a gene exists only if it is in the code."
+        }
+      ]
+    },
+    {
+      "id": "cp",
+      "at": "A3:B4",
+      "icon": "⬡",
+      "title": "Control Plane",
+      "description": "Registry, species, weights, stats, UI",
+      "children": [
+        {
+          "id": "cp-registry",
+          "at": "A1:B1",
+          "icon": "◫",
+          "title": "Gene registry",
+          "description": "Assigns each gene a position in dna",
+          "details": "Positions of extinct genes are not reused while old cookies live; a new epoch starts with a new `dna` version."
+        },
+        {
+          "id": "cp-species",
+          "at": "A3:B3",
+          "icon": "⬡",
+          "title": "Species builder",
+          "description": "Assembles species from suitable genes"
+        },
+        {
+          "id": "cp-weights",
+          "at": "A5:B5",
+          "icon": "⬡",
+          "title": "Weights",
+          "description": "Thompson sampling by niches, under constraints",
+          "details": "Traffic weights come from species metrics. Manual control is expressed as **constraints** (max share, ramp-up, segments, forbidden combinations), never as weight edits, so the statistics stay valid."
+        },
+        {
+          "id": "cp-stats",
+          "at": "D3:E3",
+          "icon": "⬡",
+          "title": "Gene statistics",
+          "description": "Regression of gene contributions",
+          "details": "Fitness is scored **per gene**, by regression over species genotypes. Interactions are modelled only within a locus. Low score → extinction, consistent win → fixation."
+        },
+        {
+          "id": "cp-ui",
+          "at": "D5:E5",
+          "icon": "◉",
+          "title": "UI",
+          "description": "Genealogy, kill switch, fitness, limits"
+        }
+      ]
+    },
+    {
+      "id": "breeder",
+      "at": "D3:E3",
+      "icon": "⬡",
+      "title": "Breeder at the edge",
+      "description": "Picks a species, writes dna to a cookie",
+      "details": "Sits in front of the CDN. Takes weights from the Control Plane, picks a species for a **new** user and writes its `dna` to a cookie. A returning user keeps their species; they are reassigned only when it goes extinct.\n\n`dna` is a signed (HMAC) bit record: `version | gene field 1 | gene field 2 | …`. A bad signature means reassignment. Hundreds of genes fit in tens of bytes."
+    },
+    {
+      "id": "app",
+      "at": "D5:E5",
+      "icon": "◉",
+      "title": "CDN and app",
+      "description": "dna in the cache key; SDK enables genes",
+      "details": "The CDN includes `dna` in the cache key, so the cache splits by the number of species, not users.\n\nThe SDK makes no requests at runtime: it enables genes from `dna`. Unknown bits are ignored and a gene without a bit runs its default, so rolling back a build is safe."
+    },
+    {
+      "id": "events",
+      "at": "A6:B6",
+      "icon": "◫",
+      "title": "Event pipeline",
+      "description": "Exposures, outcomes, fast guardrail",
+      "details": "Exposures (`dna` + the gene that actually fired) and outcome events, on top of your existing analytics (warehouse-native). A **fast guardrail path** kills a lethal species within minutes."
+    }
+  ],
+  "links": [
+    {
+      "from": "ci",
+      "to": "cp",
+      "label": "genes"
+    },
+    {
+      "from": "cp",
+      "to": "breeder",
+      "label": "weights"
+    },
+    {
+      "from": "breeder",
+      "to": "app",
+      "label": "dna"
+    },
+    {
+      "from": "app",
+      "to": "events",
+      "label": "events"
+    },
+    {
+      "from": "events",
+      "to": "cp",
+      "label": "stats"
+    },
+    {
+      "from": "cp-registry",
+      "to": "cp-species"
+    },
+    {
+      "from": "cp-species",
+      "to": "cp-weights"
+    },
+    {
+      "from": "cp-stats",
+      "to": "cp-species",
+      "label": "fitness"
+    }
+  ]
+}
