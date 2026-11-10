@@ -2,6 +2,14 @@
 
 natsel borrows the vocabulary of evolution because the mechanics really match.
 
+## A tree of species
+
+Like a phylogenetic tree in biology: species branch by mutation and crossing, some go extinct, the fittest spread.
+
+<iframe class="ns-diagram" src="../../assets/diagrams/evolution.html" title="species evolution tree" loading="lazy"></iframe>
+
+[Open full screen](../assets/diagrams/evolution.html){ .md-button } — click a species to read its story.
+
 ## Gene and alleles
 
 A **gene** is a minimal change behind a flag. Its contract:

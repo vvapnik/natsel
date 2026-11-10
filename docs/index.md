@@ -56,6 +56,12 @@ by a PR from a skill. A human approves both.
 
 </div>
 
+## Watch a product evolve
+
+<iframe class="ns-diagram" src="assets/diagrams/evolution.html" title="species evolution tree" loading="lazy"></iframe>
+
+[Open full screen](assets/diagrams/evolution.html){ .md-button } — click a species to read its story.
+
 ## Not another A/B tool
 
 | | Classic A/B testing | natsel |
