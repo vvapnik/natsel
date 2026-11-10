@@ -1,54 +1,46 @@
 {
   "takesix": "1.0",
   "title": "How species evolve",
-  "description": "A phylogenetic tree of one product: time runs top to bottom, 🌿 alive, ☠ extinct, 🦴 fossil",
+  "description": "A phylogenetic tree of one product: time runs left to right, 🌿 alive, ☠ extinct",
   "blocks": [
     {
       "id": "s0",
-      "at": "B1:C1",
+      "at": "A3",
       "icon": "☠",
-      "title": "S0 · founder",
-      "description": "Base product, now extinct",
+      "title": "S0",
+      "description": "founder",
       "details": "**Genotype:** no genes, the product as it is today.\n\n**Fate:** extinct. Once its children S1 and S2 proved themselves, traffic flowed to them and S0 stopped getting new users. Nobody had to decide to switch it off.\n\nThere is no control version: S0 was never special, only the first."
     },
     {
-      "id": "fossil",
-      "at": "E1:F1",
-      "icon": "🦴",
-      "title": "Fossil",
-      "description": "Frozen founder on 2% of traffic",
-      "details": "**Optional.** A frozen copy of the founder kept on 1–2% of traffic. It never reproduces and never competes; it only gives an absolute reference point (\"are we better than where we started?\") and helps catch seasonality."
-    },
-    {
       "id": "s1",
-      "at": "A3:B3",
+      "at": "C2",
       "icon": "🌿",
       "title": "S1",
-      "description": "+ new onboarding · 25%",
+      "description": "+onboard",
       "details": "**Genotype:** onboarding gene, allele B.\n\n**Fate:** alive, 25% of traffic. A successful parent: it produced S3 by mutation and S4 by crossing. It lives side by side with its children, so they are compared with it (genealogical control)."
     },
     {
       "id": "s2",
-      "at": "E3:F3",
+      "at": "C4",
       "icon": "☠",
       "title": "S2",
-      "description": "+ new pricing page · extinct",
+      "description": "+pricing",
       "details": "**Genotype:** pricing page gene, allele A.\n\n**Fate:** extinct. Its weight decayed and it lost its slot. But its genes did not have to die with it: the pricing gene passed to S4 by crossing.\n\nThe unit of selection is the **gene**, not the species. Species are temporary carriers."
     },
     {
       "id": "s3",
-      "at": "A5:B5",
+      "at": "E1",
       "icon": "☠",
       "title": "S3",
-      "description": "+ checkout copy · lethal",
+      "description": "+checkout",
       "details": "**Genotype:** onboarding B + checkout copy gene.\n\n**Fate:** lethal mutation. The checkout copy broke a guardrail metric (payment errors). The fast guardrail path killed S3 within minutes and its users went back to the closest living relative, S1.\n\nThe checkout gene's score drops; a skill opens a PR that deletes its code."
     },
     {
       "id": "s4",
-      "at": "C5:D5",
+      "at": "E3",
       "icon": "🌿",
-      "title": "S4 · leader",
-      "description": "Hybrid S1 × S2 · 73%",
+      "title": "S4",
+      "description": "leader",
       "details": "**Genotype:** onboarding B + pricing page A.\n\n**Fate:** alive, 73% of traffic and growing. Both genes keep winning across every species that carries them, so the regression gives them high fitness.\n\nNext: the onboarding gene is **fixed** — merged into the base, its flag removed. From then on it is simply part of the product, and the slot is free for new mutations."
     }
   ],
@@ -62,12 +54,6 @@
       "from": "s0",
       "to": "s2",
       "label": "mutation"
-    },
-    {
-      "from": "s0",
-      "to": "fossil",
-      "label": "frozen",
-      "style": "dashed"
     },
     {
       "from": "s1",
