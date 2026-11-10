@@ -1,0 +1,8 @@
+.ns-hero { padding: 2.5rem 0 1rem; }
+.ns-hero h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.15; margin-bottom: .6rem; }
+.ns-hero .ns-lead { font-size: 1.15rem; opacity: .85; max-width: 42rem; }
+.ns-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.ns-card { border: 1px solid var(--md-default-fg-color--lightest); border-radius: .5rem; padding: 1rem 1.1rem; }
+.ns-card h3 { margin-top: 0 !important; }
+.ns-diagram { width: 100%; height: 70vh; min-height: 420px; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .5rem; }
+@media (max-width: 600px) { .ns-hero h1 { font-size: 1.8rem; } .ns-diagram { height: 60vh; } }
