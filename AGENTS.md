@@ -18,3 +18,8 @@ Notes for AI coding agents working in this repository.
   (`sp=<species>;gene=allele;…` + HMAC, secret `DNA_SECRET`) and rewrites `[data-gene]` HTML. Static paths bypass it
   (`run_worker_first` in `wrangler.jsonc`). Any failure must serve the page as built (first alleles).
   Local run: `mkdocs build`, `.dev.vars` with `DNA_SECRET=...`, seed local KV, `npx wrangler dev`.
+- Gene registration (TASK-70.16): genes are registered from the code, never by hand or by a skill.
+  `scripts/scan-genes.mjs` scans the built `site/` (`data-gene` HTML and `gene("x.y", [...])` calls) and fails the
+  build on a contract error; after a successful deploy `scripts/register-genes.mjs` posts the manifest to
+  natsel-control `POST /api/genes/sync` (secret `NATSEL_API_TOKEN`). A gene that disappears from the code is marked
+  removed. Allele 0 must stay the default; alleles are only ever appended, never reordered or dropped.

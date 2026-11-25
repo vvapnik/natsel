@@ -3,7 +3,7 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["docs/**", "src/**", "tests/**", "overrides/**", "redirect/**", "mkdocs.yml", "requirements-docs.txt", "wrangler.jsonc", ".github/workflows/deploy.yml"]
+    paths: ["docs/**", "src/**", "scripts/**", "tests/**", "overrides/**", "redirect/**", "mkdocs.yml", "requirements-docs.txt", "wrangler.jsonc", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:
@@ -23,12 +23,20 @@ jobs:
       - run: node --test tests/*.test.mjs
       - run: pip install -r requirements-docs.txt
       - run: mkdocs build --strict
+      # Genes come from the code: the scan fails the build on a contract error (TASK-70.16).
+      - run: node scripts/scan-genes.mjs site site-genes.json
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.168.0"
           command: deploy
+      # After a successful deploy only: the registry follows what is live. A failure here leaves the site as
+      # deployed; unregistered genes show their first allele.
+      - name: Register genes in the Control Plane
+        run: node scripts/register-genes.mjs site-genes.json
+        env:
+          NATSEL_API_TOKEN: ${{ secrets.NATSEL_API_TOKEN }}
 
   # The old address vvapnik.github.io/natsel/ only serves a redirect to the new site.
   github-pages-redirect:
