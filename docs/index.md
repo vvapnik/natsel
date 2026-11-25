@@ -51,8 +51,8 @@ over species genotypes. A species nobody routes traffic to goes extinct on its o
 
 <div class="ns-card" markdown>
 ### :material-source-merge: Fixation & extinction
-A gene that keeps winning is merged and its flag removed. A losing gene is deleted
-by a PR from a skill. A human approves both.
+When selection is over, a deterministic codemod (no AI) opens a merge request that keeps
+the winning allele and removes the flag. The team reviews it like any other MR.
 </div>
 
 </div>

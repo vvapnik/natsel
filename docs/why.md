@@ -23,7 +23,7 @@ natsel is not for everyone. This page helps you decide if it is for you.
 | Each test needs its own share of traffic | Traffic is split only between a few species; each species carries many genes, and each gene is measured across all species that carry it |
 | A fixed control ages and drifts | No control: each child is compared to its living parent |
 | Dead flags pile up | Extinction deletes the code; fixation merges it and removes the flag |
-| A human decides each experiment | Traffic weights decide; humans set goals, guardrails and approve PRs |
+| A human decides each experiment | Traffic weights decide; humans set goals and guardrails, approve species and cleanup MRs |
 | "Did this idea help?" is lost after the test | Each gene's contribution to the metric is visible and goes back to the ticket |
 
 ## What you keep
@@ -40,6 +40,6 @@ analytics (warehouse-native), and the whole system is open source and self-hoste
 - Regulated flows where every variant needs separate sign-off.
 
 !!! note "Honest status"
-    natsel is a concept today. The emulation stage (TASK-70.4) exists precisely to
+    natsel is a concept today. The planned emulation stage exists precisely to
     check, before anyone adopts it, whether gene-level selection beats a plain
     multi-armed bandit on realistic traffic.

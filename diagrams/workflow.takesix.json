@@ -8,45 +8,48 @@
       "at": "A1:B1",
       "icon": "○",
       "title": "Idea",
-      "description": "A product person files it in the tracker"
+      "description": "In the tracker",
+      "details": "A product person files it in the tracker."
     },
     {
       "id": "build",
       "at": "B2:C2",
       "icon": "○",
-      "title": "Implement with skills",
-      "description": "Skills make the gene and its alleles"
+      "title": "Code",
+      "description": "Skill wraps it",
+      "details": "The skill wraps it as a gene."
     },
     {
       "id": "checks",
       "at": "C3:D3",
       "icon": "○",
       "title": "Usual checks",
-      "description": "Tests, review, acceptance, stage",
-      "details": "Nothing changes in your quality process. One known gap: **combinations** of genes are not tested on stage. It is covered by binding genes to one locus (dependencies only through nesting) and the fast guardrail path."
+      "description": "Tests, review",
+      "details": "Tests, review, acceptance, stage.\n\nNothing changes in your quality process. One known gap: **combinations** of genes are not tested on stage. It is covered by binding genes to one locus (dependencies only through nesting) and the fast guardrail path."
     },
     {
       "id": "pool",
       "at": "D4:E4",
       "icon": "○",
       "title": "Gene pool",
-      "description": "Control Plane builds species, sets weights",
-      "details": "Optional manual control comes as **constraints**: max share, ramp-up, segments, forbidden combinations. Not weight edits, so the statistics stay valid."
+      "description": "Species built",
+      "details": "Control Plane builds species, sets weights.\n\nThe gene enters the pool and every living species with its **control allele A**. New species are built automatically or by hand; each passes a **smoke test** and an **optional manual approval** before it gets traffic.\n\nOptional manual control comes as **constraints**: max share, ramp-up, segments, forbidden combinations. Not weight edits, so the statistics stay valid."
     },
     {
       "id": "select",
       "at": "E5:F5",
       "icon": "○",
-      "title": "Selection on traffic",
-      "description": "Each idea's impact is visible, goes to the ticket"
+      "title": "Selection",
+      "description": "By traffic",
+      "details": "Each idea's impact is visible, goes to the ticket."
     },
     {
       "id": "end",
       "at": "A6:C6",
       "icon": "○",
       "title": "Delete or fix",
-      "description": "A PR from a skill; a human approves",
-      "details": "- **Extinction**: a losing gene's code is deleted.\n- **Fixation**: a winning gene is merged into the base and its flag removed.\n\nNew genes come only from people's ideas; the system combines them."
+      "description": "Codemod MR, no AI",
+      "details": "A codemod MR (no AI); the team merges.\n\n- **Extinction / fixation**: the Control Plane opens a merge request from a deterministic codemod (no AI). It keeps the winning allele's branch, removes the flag and deletes the losing branches.\n- The team reviews and merges it like any other MR.\n\nNew genes come only from people's initiative; the system only combines them."
     }
   ],
   "links": [

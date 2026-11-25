@@ -6,7 +6,7 @@
 
 ## 1. SDK and skills
 
-Genes are created in code by skills (a codemod following the gene contract). At build time
+Genes are created in code by the natsel skill: it wraps every change behind a flag following the gene contract. At build time
 in CI/CD the SDK collects the list of genes and sends it to the Control Plane: **code is the
 source of truth**. Along with each gene the SDK sends its parent gene, if it is nested. At runtime the SDK makes no requests: it enables genes algorithmically from
 `dna`. Ideally it is an OpenFeature provider.
@@ -14,7 +14,7 @@ source of truth**. Along with each gene the SDK sends its parent gene, if it is 
 ## 2. Control Plane
 
 For the prototype, one service built from widgets: gene registry (assigns positions in `dna`, keeps the nesting tree),
-species composition (only valid genotypes: a nested gene only with its parent), species weights, statistics (regression of gene contributions) and a UI
+species composition (only valid genotypes: a nested gene only with its parent; every new species passes a smoke test and an optional manual approval), species weights, statistics (regression of gene contributions) and a UI
 (genealogy, kill switch, fitness function, constraints).
 
 ## 3. Breeder at the edge
@@ -29,6 +29,13 @@ of species, not users.
 
 Exposures (`dna` + the gene that actually fired) and outcome events, on top of your existing
 analytics (warehouse-native). A fast guardrail path kills a lethal species within minutes.
+
+## 5. Extinction flow
+
+The Control Plane keeps the list of genes where selection is over. For each it takes the winning
+allele and runs a **deterministic codemod (no AI)**: the flag check is replaced by the winner's
+branch, the losing branches are deleted. The codemod opens a merge request; the owning team
+reviews and merges it, and the gene leaves the pool on the next CI scan.
 
 ## The `dna` record
 
