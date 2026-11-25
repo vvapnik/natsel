@@ -5,13 +5,24 @@ hide: [navigation, toc]
 
 <div class="ns-hero" markdown>
 
+<div data-gene="hero.headline" markdown>
+<div data-allele markdown>
+
 # Let your product evolve.<br>LLMs breed the changes, traffic does the selecting.
+
+</div>
+<div data-allele hidden markdown>
+
+# Stop running experiments.<br>Let your product evolve on its own.
+
+</div>
+</div>
 
 <p class="ns-lead">natsel is an open source framework for continuous product evolution.
 Small, isolated changes ("genes") compete for live traffic with no control version.
 Losers have their code deleted, winners get merged. Humans set the goal and the limits.</p>
 
-[Why your project needs it](why.md){ .md-button .md-button--primary }
+<span data-gene="hero.cta"><span data-allele>[Why your project needs it](why.md){ .md-button .md-button--primary }</span><span data-allele hidden>[See why it works](why.md){ .md-button .md-button--primary .ns-accent }</span></span>
 [How it works](concept/model.md){ .md-button }
 
 </div>
@@ -88,4 +99,4 @@ the winning allele and removes the flag. The team reviews it like any other MR.
 natsel is a **concept**. Next: specs and LLM skills for genes, an open source
 Control Plane you can start with one command, and a traffic emulation that will
 give an honest go / no-go against a plain multi-armed bandit.
-Free and self-hosted. [Follow on GitHub](https://github.com/vvapnik/natsel).
+Free and self-hosted. <span data-gene="status.cta"><span data-allele>[Follow on GitHub](https://github.com/vvapnik/natsel).</span><span data-allele hidden>[Star it on GitHub](https://github.com/vvapnik/natsel) to get updates.</span></span>

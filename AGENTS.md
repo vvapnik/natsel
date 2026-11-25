@@ -9,3 +9,7 @@ Notes for AI coding agents working in this repository.
   species, Breeder, `dna`, fixation, extinction).
 - Language of the public repo: English.
 - Diagrams are TakeSix: edit `diagrams/*.takesix.json`, then render to `docs/assets/diagrams/<name>.html` with the takesix CLI (`takesix.mjs render`). No Mermaid.
+- Genes (POC contract, see `docs/assets/js/natsel.js`): wrapper `data-gene="<locus>.<name>"` with direct
+  `data-allele` children; the first allele is the default and stays visible, others get `hidden`. Any failure
+  (no dna, unknown gene or allele, bad signature, error) must fall back to the first allele.
+  Tests: `node --test tests/natsel.test.mjs`.

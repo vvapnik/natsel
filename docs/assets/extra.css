@@ -6,3 +6,4 @@
 .ns-card h3 { margin-top: 0 !important; }
 .ns-diagram { width: 100%; height: 70vh; min-height: 420px; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .5rem; }
 @media (max-width: 600px) { .ns-hero h1 { font-size: 1.8rem; } .ns-diagram { height: 60vh; } }
+.md-typeset .md-button--primary.ns-accent { background-color: var(--md-accent-fg-color); border-color: var(--md-accent-fg-color); }
