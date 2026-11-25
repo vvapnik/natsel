@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "natsel",
+  "compatibility_date": "2026-11-01",
+  // Static site for now. The Breeder (TASK-70.8) adds "main" and runs in front of these assets.
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  },
+  "routes": [{ "pattern": "natsel.vapnik.de", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false
+}

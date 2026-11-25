@@ -1,6 +1,6 @@
 site_name: natsel
 site_description: Continuous product evolution by natural selection. LLMs breed the genes, live traffic does the selecting.
-site_url: https://vvapnik.github.io/natsel/
+site_url: https://natsel.vapnik.de/
 repo_url: https://github.com/vvapnik/natsel
 repo_name: vvapnik/natsel
 edit_uri: edit/main/docs/
