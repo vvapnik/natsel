@@ -74,6 +74,7 @@ async function render(request, env, ctx) {
     `${url.origin}${url.pathname}?__natsel=${encodeURIComponent(`${population}:${species}:${snapshot?.version ?? 0}`)}`,
   );
   let html = cacheable ? await caches.default.match(key) : undefined;
+  const cacheStatus = html ? "hit" : "miss";
 
   if (!html) {
     const asset = await env.ASSETS.fetch(request);
@@ -93,6 +94,7 @@ async function render(request, env, ctx) {
   out.headers.set("Cache-Control", "private, no-cache");
   out.headers.set("Vary", "Cookie");
   out.headers.set("X-Natsel-Species", species);
+  out.headers.set("X-Natsel-Cache", cacheable ? cacheStatus : "bypass");
   if (d.setCookie) {
     out.headers.append(
       "Set-Cookie",
