@@ -26,6 +26,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.168.0"
           command: deploy
 
   # The old address vvapnik.github.io/natsel/ only serves a redirect to the new site.
