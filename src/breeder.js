@@ -4,7 +4,7 @@
 //
 // Fail safe: any problem -> the page as built, where every gene shows its first (default) allele.
 
-import { COOKIE, decide, readCookie } from "./breeder-core.js";
+import { COOKIE, SALT_PREFIX, decide, ensureSalt, modeOf, readCookie, utcDay, visitorKey } from "./breeder-core.js";
 
 const YEAR = 365 * 24 * 3600;
 const EDGE_TTL = 300; // seconds a rendered (page, species, snapshot version) stays in the edge cache
@@ -19,6 +19,54 @@ async function loadSnapshot(env, population) {
   } catch {
     return null;
   }
+}
+
+// Salt of the current UTC day, per isolate. The Cron Trigger creates each day's salt a day in advance; if it is
+// missing (first deploy), the isolate creates it once. Never log the salt or the visitor key.
+let salt = { day: "", value: null, creating: "" };
+
+async function loadSalt(env, now = Date.now()) {
+  const day = utcDay(now);
+  if (salt.day === day && salt.value) return salt.value;
+  let value = null;
+  try {
+    value = await env.DISTRIBUTIONS.get(SALT_PREFIX + day, { cacheTtl: 300 });
+    if (!value && salt.creating !== day) {
+      salt.creating = day;
+      value = await ensureSalt(env.DISTRIBUTIONS, day);
+    }
+  } catch {
+    value = null;
+  }
+  if (value) salt = { ...salt, day, value };
+  return value;
+}
+
+/**
+ * Species of a request: the one place that decides it, for pages and (TASK-70.9) for events,
+ * so both always agree. Returns { population, snapshot, mode, decision }.
+ */
+export async function assign(request, env) {
+  const url = new URL(request.url);
+  const population = populationFor(request, env);
+  const mode = modeOf(env.ASSIGNMENT);
+  const userAgent = request.headers.get("User-Agent") ?? "";
+  const [snapshot, visitor] = await Promise.all([
+    loadSnapshot(env, population),
+    mode === "hash"
+      ? loadSalt(env).then((s) => visitorKey(s, request.headers.get("CF-Connecting-IP"), userAgent))
+      : null,
+  ]);
+  const decision = await decide({
+    snapshot,
+    cookie: readCookie(request.headers.get("Cookie"), COOKIE),
+    preview: url.searchParams.get("dna") || "",
+    userAgent,
+    secret: env.DNA_SECRET,
+    mode,
+    visitor,
+  });
+  return { population, snapshot, mode, decision };
 }
 
 const escapeScript = (s) => s.replace(/</g, "\\u003c");
@@ -57,15 +105,7 @@ function rewrite(response, { genotype, natsel }) {
 
 async function render(request, env, ctx) {
   const url = new URL(request.url);
-  const population = populationFor(request, env);
-  const snapshot = await loadSnapshot(env, population);
-  const d = await decide({
-    snapshot,
-    cookie: readCookie(request.headers.get("Cookie"), COOKIE),
-    preview: url.searchParams.get("dna") || "",
-    userAgent: request.headers.get("User-Agent"),
-    secret: env.DNA_SECRET,
-  });
+  const { population, snapshot, mode, decision: d } = await assign(request, env);
   const species = d.species?.id ?? "control";
 
   // Edge cache keyed by (page, species, snapshot version); previews of raw dna are not cached.
@@ -81,7 +121,7 @@ async function render(request, env, ctx) {
     const type = asset.headers.get("content-type") ?? "";
     if (!type.includes("text/html")) return asset;
     const genes = Object.fromEntries(d.genotype);
-    const natsel = { breeder: true, population, species: d.species?.id ?? null, dna: d.dna, genes };
+    const natsel = { breeder: true, population, assignment: mode, species: d.species?.id ?? null, dna: d.dna, genes };
     const body = await rewrite(asset, { genotype: d.genotype, natsel }).text();
     html = new Response(body, asset);
     html.headers.delete("ETag"); // the static file's ETag does not describe the rewritten page
@@ -101,10 +141,18 @@ async function render(request, env, ctx) {
       `${COOKIE}=${encodeURIComponent(d.setCookie)}; Path=/; Max-Age=${YEAR}; HttpOnly; Secure; SameSite=Lax`,
     );
   }
+  // Hash mode stores nothing on the device: a dna cookie left from the cookie mode is removed.
+  if (d.clearCookie) out.headers.append("Set-Cookie", `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
   return out;
 }
 
 export default {
+  // Cron Trigger (hourly): today's and tomorrow's salts exist before they are needed.
+  async scheduled(_event, env) {
+    const now = Date.now();
+    for (const day of [utcDay(now), utcDay(now + 24 * 3600 * 1000)]) await ensureSalt(env.DISTRIBUTIONS, day);
+  },
+
   async fetch(request, env, ctx) {
     try {
       if (request.method !== "GET" && request.method !== "HEAD") return env.ASSETS.fetch(request);

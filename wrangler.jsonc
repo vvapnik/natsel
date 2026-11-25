@@ -15,7 +15,11 @@
     // Written by natsel-control: `population:<id>` -> traffic distribution snapshot.
     { "binding": "DISTRIBUTIONS", "id": "58e5ae8dc1dc4863a4d46590bc669962" }
   ],
-  "vars": { "POPULATION": "default" },
+  // ASSIGNMENT (TASK-70.17): "hash" (default) keeps a visitor in one species for a UTC day by HMAC(daily salt, IP + UA),
+  // nothing stored on the device; "cookie" uses the signed dna cookie for a year.
+  "vars": { "POPULATION": "default", "ASSIGNMENT": "hash" },
+  // Hourly: create today's and tomorrow's daily salts (KV `salt:<YYYY-MM-DD>`, expire an hour after their day).
+  "triggers": { "crons": ["0 * * * *"] },
   // Secret DNA_SECRET signs the dna cookie (wrangler secret put DNA_SECRET). Without it everybody sees the control.
   "routes": [{ "pattern": "natsel.vapnik.de", "custom_domain": true }],
   "workers_dev": false,

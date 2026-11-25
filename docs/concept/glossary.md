@@ -18,5 +18,5 @@
 | carrying capacity | max living species at the given traffic |
 
 **Breeder** — the edge component that assigns a species to a user.
-**`dna`** — the signed bit record of a species' genes, stored in a cookie.
+**`dna`** — the signed bit record of a species' genes; kept in a cookie only in the cookie assignment mode (the default hash mode derives the species from a daily salted hash instead).
 **Control Plane** — registry, species, weights, statistics and UI.

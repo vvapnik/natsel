@@ -90,8 +90,8 @@
       "at": "D3:E3",
       "icon": "⬡",
       "title": "Breeder",
-      "description": "Edge, cookie",
-      "details": "Picks a species, writes dna to a cookie.\n\nSits in front of the CDN. Takes weights from the Control Plane, picks a species for a **new** user and writes its `dna` to a cookie. A returning user keeps their species; they are reassigned only when it goes extinct.\n\n`dna` is a signed (HMAC) bit record: `version | gene field 1 | gene field 2 | …`. A bad signature means reassignment. Hundreds of genes fit in tens of bytes."
+      "description": "Edge, hash",
+      "details": "Picks a species for each user.\n\nSits in front of the CDN and takes weights from the Control Plane. **Hash mode** (default, nothing stored on the device): the species comes from HMAC(daily salt, IP + User-Agent) by weighted rendezvous hashing, stable for a day; extinction moves only the extinct species' users. **Cookie mode**: `dna` goes to a cookie and a returning user keeps their species until it goes extinct.\n\n`dna` is a signed (HMAC) bit record: `version | gene field 1 | gene field 2 | …`. A bad signature means reassignment. Hundreds of genes fit in tens of bytes."
     },
     {
       "id": "app",

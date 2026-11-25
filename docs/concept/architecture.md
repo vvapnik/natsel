@@ -20,10 +20,20 @@ species composition (only valid genotypes: a nested gene only with its parent; e
 ## 3. Breeder at the edge
 
 Sits in front of the CDN (the industry often calls it a "decision maker"). It only distributes
-traffic between ready species: takes weights from the Control Plane, picks a species for a new
-user and writes its `dna` to a cookie; a returning user keeps theirs (reassigned only when the
-species goes extinct). The CDN includes `dna` in the cache key, so the cache splits by the number
-of species, not users.
+traffic between ready species: takes weights from the Control Plane and picks a species for each
+user in one of two ways:
+
+- **hash** (default, nothing stored on the device): the species is derived from
+  HMAC(daily salt, IP + User-Agent) by weighted rendezvous hashing. A user keeps the species for
+  a day; when weights change, only the users that must move do, and extinction moves only the
+  extinct species' users. The salt is random, rotated daily and never logged, so no consent
+  banner is needed for the assignment itself.
+- **cookie**: the signed `dna` is written to a cookie; a returning user keeps theirs (reassigned
+  only when the species goes extinct). Stable for longer, but it is storage on the device, which
+  usually requires consent.
+
+The CDN includes the species in the cache key, so the cache splits by the number of species, not
+users.
 
 ## 4. Event pipeline
 
