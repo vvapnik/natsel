@@ -62,3 +62,9 @@ test("browserDna: preview param, window.natsel, broken window", () => {
   assert.equal(browserDna({ location: { href: "https://x/" }, natsel: { dna: "b=1.s" } }), "b=1.s");
   assert.equal(browserDna({}), "");
 });
+
+test("browserDna: behind the Breeder window.natsel wins over ?dna", () => {
+  const win = { location: { href: "https://x/?dna=sp-1" }, natsel: { breeder: true, dna: "sp=sp-1;a.b=1.s" } };
+  assert.equal(browserDna(win), "sp=sp-1;a.b=1.s");
+  assert.equal(browserDna({ location: { href: "https://x/?dna=a=1.s" }, natsel: { breeder: true, dna: "" } }), "");
+});

@@ -1,12 +1,22 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "natsel",
+  "account_id": "5e7bd5ed59e0631f6d1891aff755ad8f",
   "compatibility_date": "2026-11-01",
-  // Static site for now. The Breeder (TASK-70.8) adds "main" and runs in front of these assets.
+  // Breeder (TASK-70.8): assigns a species and rewrites HTML on the edge. Static files bypass it.
+  "main": "src/breeder.js",
   "assets": {
     "directory": "./site",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/*", "!/assets/*", "!/search/*", "!/*.xml", "!/*.gz"]
   },
+  "kv_namespaces": [
+    // Written by natsel-control: `population:<id>` -> traffic distribution snapshot.
+    { "binding": "DISTRIBUTIONS", "id": "58e5ae8dc1dc4863a4d46590bc669962" }
+  ],
+  "vars": { "POPULATION": "default" },
+  // Secret DNA_SECRET signs the dna cookie (wrangler secret put DNA_SECRET). Without it everybody sees the control.
   "routes": [{ "pattern": "natsel.vapnik.de", "custom_domain": true }],
   "workers_dev": false,
   "preview_urls": false

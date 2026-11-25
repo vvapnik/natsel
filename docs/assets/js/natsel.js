@@ -67,13 +67,16 @@ export function applyGenes(root, genotype) {
   }
 }
 
-// dna source in the browser: window.natsel.dna (set by the Breeder, TASK-70.8);
-// for previews, ?dna=... in the URL. The Breeder checks the signature before it writes window.natsel.
+// dna source in the browser. Behind the Breeder (edge Worker) window.natsel.breeder is true and
+// window.natsel.dna is authoritative: the Breeder already resolved ?dna= previews and checked the signature.
+// Without the Breeder (static preview), ?dna=... in the URL is used.
 export function browserDna(win) {
   try {
+    const n = win.natsel;
+    if (n && n.breeder === true) return typeof n.dna === "string" ? n.dna : "";
     const preview = new URL(win.location.href).searchParams.get("dna");
     if (preview) return preview;
-    return win.natsel && typeof win.natsel.dna === "string" ? win.natsel.dna : "";
+    return n && typeof n.dna === "string" ? n.dna : "";
   } catch {
     return "";
   }

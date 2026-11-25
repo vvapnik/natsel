@@ -12,4 +12,9 @@ Notes for AI coding agents working in this repository.
 - Genes (POC contract, see `docs/assets/js/natsel.js`): wrapper `data-gene="<locus>.<name>"` with direct
   `data-allele` children; the first allele is the default and stays visible, others get `hidden`. Any failure
   (no dna, unknown gene or allele, bad signature, error) must fall back to the first allele.
-  Tests: `node --test tests/natsel.test.mjs`.
+  Tests: `node --test tests/*.test.mjs` (CI runs them before deploy).
+- Breeder (`src/breeder.js`, pure logic in `src/breeder-core.js`): the edge Worker in front of the site. It reads the
+  traffic distribution from KV `population:<id>` (written by natsel-control), keeps a signed `dna` cookie
+  (`sp=<species>;gene=allele;…` + HMAC, secret `DNA_SECRET`) and rewrites `[data-gene]` HTML. Static paths bypass it
+  (`run_worker_first` in `wrangler.jsonc`). Any failure must serve the page as built (first alleles).
+  Local run: `mkdocs build`, `.dev.vars` with `DNA_SECRET=...`, seed local KV, `npx wrangler dev`.

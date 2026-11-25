@@ -3,7 +3,7 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["docs/**", "overrides/**", "redirect/**", "mkdocs.yml", "requirements-docs.txt", "wrangler.jsonc", ".github/workflows/deploy.yml"]
+    paths: ["docs/**", "src/**", "tests/**", "overrides/**", "redirect/**", "mkdocs.yml", "requirements-docs.txt", "wrangler.jsonc", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip, cache-dependency-path: requirements-docs.txt }
+      - run: node --test tests/*.test.mjs
       - run: pip install -r requirements-docs.txt
       - run: mkdocs build --strict
       - uses: cloudflare/wrangler-action@v3
