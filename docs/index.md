@@ -18,9 +18,13 @@ hide: [navigation, toc]
 </div>
 </div>
 
-<p class="ns-lead">natsel is an open source framework for continuous product evolution.
+<div data-gene="hero.lead">
+<p data-allele class="ns-lead">natsel is an open source framework for continuous product evolution.
 Small, isolated changes ("genes") compete for live traffic with no control version.
 Losers have their code deleted, winners get merged. Humans set the goal and the limits.</p>
+<p data-allele hidden class="ns-lead">Small changes compete for live traffic.
+Losers get deleted, winners get merged. You set the goal and the limits.</p>
+</div>
 
 <span data-gene="hero.cta"><span data-allele>[Why your project needs it](why.md){ .md-button .md-button--primary }</span><span data-allele hidden>[See why it works](why.md){ .md-button .md-button--primary .ns-accent }</span></span>
 [How it works](concept/model.md){ .md-button }
